@@ -50,8 +50,6 @@ public class Targets : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
        
-        
-        
         Destroy(gameObject);
         if (!gameObject.CompareTag("Bad"))
         {
@@ -62,7 +60,16 @@ public class Targets : MonoBehaviour
     }
 
 
-
+    public void DestroyTargets()
+    {
+        if (gameManager.isGameActive)
+        {
+            Destroy(gameObject);
+            Instantiate(explosionParticle, transform.position,
+            explosionParticle.transform.rotation);
+            gameManager.UpdateScore(pointValue);
+        }
+    }
 
     Vector3 RandomForce()
     {
